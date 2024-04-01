@@ -154,8 +154,8 @@ func init() {
 	UpgradeThunderHeight = getUpgradeHeight("LOTUS_THUNDER_HEIGHT", UpgradeThunderHeight)
 	UpgradeWatermelonHeight = getUpgradeHeight("LOTUS_WATERMELON_HEIGHT", UpgradeWatermelonHeight)
 	UpgradeDragonHeight = getUpgradeHeight("LOTUS_DRAGON_HEIGHT", UpgradeDragonHeight)
-
 	UpgradePhoenixHeight = getUpgradeHeight("LOTUS_PHOENIX_HEIGHT", UpgradePhoenixHeight)
+	UpgradeCalibrationDragonFixHeight = getUpgradeHeight("LOTUS_DRAGON_FIX_HEIGHT", UpgradeCalibrationDragonFixHeight)
 	DrandSchedule = map[abi.ChainEpoch]DrandEnum{
 		0:                    DrandMainnet,
 		UpgradePhoenixHeight: DrandQuicknet,
