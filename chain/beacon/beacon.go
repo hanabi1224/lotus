@@ -50,9 +50,15 @@ type RandomBeacon interface {
 
 func ValidateBlockValues(bSchedule Schedule, nv network.Version, h *types.BlockHeader, parentEpoch abi.ChainEpoch,
 	prevEntry types.BeaconEntry) error {
-
 	parentBeacon := bSchedule.BeaconForEpoch(parentEpoch)
 	currBeacon := bSchedule.BeaconForEpoch(h.Height)
+
+	entryRounds := []uint64{}
+	for _, e := range h.BeaconEntries {
+		entryRounds = append(entryRounds, e.Round)
+	}
+	log.Infow("drand verification", "chained", currBeacon.IsChained(), "prev", prevEntry.Round, "entries", entryRounds)
+
 	// When we have "chained" beacons, two entries at a fork are required.
 	if parentBeacon != currBeacon && currBeacon.IsChained() {
 		if len(h.BeaconEntries) != 2 {

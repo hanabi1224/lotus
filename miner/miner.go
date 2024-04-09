@@ -670,6 +670,12 @@ func (m *Miner) mineOne(ctx context.Context, base *MiningBase) (minedBlock *type
 			"tCreateBlock ", tCreateBlock.Sub(tIntersectAndRefresh))
 	}
 
+	entryRounds := []uint64{}
+	for _, e := range minedBlock.Header.BeaconEntries {
+		entryRounds = append(entryRounds, e.Round)
+	}
+	log.Infow("drand in minedBlock", "entries", entryRounds)
+
 	return minedBlock, nil
 }
 
